@@ -14,6 +14,8 @@ WARNING:
 
 -->
 
+**Note:** this is the "per-architecture" repository for the `arm32v5` builds of [the `haproxy` official image](https://hub.docker.com/_/haproxy) -- for more information, see ["Architectures other than amd64?" in the official images documentation](https://github.com/docker-library/official-images#architectures-other-than-amd64) and ["An image's source changed in Git, now what?" in the official images FAQ](https://github.com/docker-library/faq#an-images-source-changed-in-git-now-what).
+
 # Quick reference
 
 -	**Maintained by**:  
@@ -25,19 +27,13 @@ WARNING:
 # Supported tags and respective `Dockerfile` links
 
 -	[`2.9-dev3`, `2.9-dev`, `2.9-dev3-bullseye`, `2.9-dev-bullseye`](https://github.com/docker-library/haproxy/blob/c8e1d6ffde3f934abf19d538df687f5a2f19c63c/2.9/Dockerfile)
--	[`2.9-dev3-alpine`, `2.9-dev-alpine`, `2.9-dev3-alpine3.18`, `2.9-dev-alpine3.18`](https://github.com/docker-library/haproxy/blob/c8e1d6ffde3f934abf19d538df687f5a2f19c63c/2.9/alpine/Dockerfile)
 -	[`2.8.2`, `2.8`, `lts`, `latest`, `2.8.2-bullseye`, `2.8-bullseye`, `lts-bullseye`, `bullseye`](https://github.com/docker-library/haproxy/blob/c2acd7ee546c724135e38dd46ad683823edaf3cd/2.8/Dockerfile)
--	[`2.8.2-alpine`, `2.8-alpine`, `lts-alpine`, `alpine`, `2.8.2-alpine3.18`, `2.8-alpine3.18`, `lts-alpine3.18`, `alpine3.18`](https://github.com/docker-library/haproxy/blob/c2acd7ee546c724135e38dd46ad683823edaf3cd/2.8/alpine/Dockerfile)
 -	[`2.7.10`, `2.7`, `2.7.10-bullseye`, `2.7-bullseye`](https://github.com/docker-library/haproxy/blob/6ac34139426d79e07ec76ff9a8b9948dc85e34b3/2.7/Dockerfile)
--	[`2.7.10-alpine`, `2.7-alpine`, `2.7.10-alpine3.18`, `2.7-alpine3.18`](https://github.com/docker-library/haproxy/blob/6ac34139426d79e07ec76ff9a8b9948dc85e34b3/2.7/alpine/Dockerfile)
 -	[`2.6.15`, `2.6`, `2.6.15-bullseye`, `2.6-bullseye`](https://github.com/docker-library/haproxy/blob/fc50ce81390257a9702f3ea74237a73c658a1789/2.6/Dockerfile)
--	[`2.6.15-alpine`, `2.6-alpine`, `2.6.15-alpine3.18`, `2.6-alpine3.18`](https://github.com/docker-library/haproxy/blob/fc50ce81390257a9702f3ea74237a73c658a1789/2.6/alpine/Dockerfile)
 -	[`2.4.24`, `2.4`, `2.4.24-bullseye`, `2.4-bullseye`](https://github.com/docker-library/haproxy/blob/4c041fe042121e9f30046440f12cf0d2747a5061/2.4/Dockerfile)
--	[`2.4.24-alpine`, `2.4-alpine`, `2.4.24-alpine3.18`, `2.4-alpine3.18`](https://github.com/docker-library/haproxy/blob/4c041fe042121e9f30046440f12cf0d2747a5061/2.4/alpine/Dockerfile)
 -	[`2.2.31`, `2.2`, `2.2.31-bullseye`, `2.2-bullseye`](https://github.com/docker-library/haproxy/blob/ad34487167b0bb727cb56000f26d8ea37449c590/2.2/Dockerfile)
--	[`2.2.31-alpine`, `2.2-alpine`, `2.2.31-alpine3.18`, `2.2-alpine3.18`](https://github.com/docker-library/haproxy/blob/ad34487167b0bb727cb56000f26d8ea37449c590/2.2/alpine/Dockerfile)
--	[`2.0.33`, `2.0`, `2.0.33-buster`, `2.0-buster`](https://github.com/docker-library/haproxy/blob/9c85db58f62beefbcbc4fabc5697ddaeb9ff3ff2/2.0/Dockerfile)
--	[`2.0.33-alpine`, `2.0-alpine`, `2.0.33-alpine3.16`, `2.0-alpine3.16`](https://github.com/docker-library/haproxy/blob/9c85db58f62beefbcbc4fabc5697ddaeb9ff3ff2/2.0/alpine/Dockerfile)
+
+[![arm32v5/haproxy build status badge](https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/arm32v5/job/haproxy.svg?label=arm32v5/haproxy%20%20build%20job)](https://doi-janky.infosiftr.net/job/multiarch/job/arm32v5/job/haproxy/)
 
 # Quick reference (cont.)
 
@@ -77,7 +73,7 @@ It is also worth checking out the [`examples/` directory from upstream](http://g
 ## Create a `Dockerfile`
 
 ```dockerfile
-FROM haproxy:2.3
+FROM arm32v5/haproxy:2.3
 COPY haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
 ```
 
@@ -106,7 +102,7 @@ You will need a kernel at [version 4.11 or newer](https://github.com/moby/moby/i
 ## Directly via bind mount
 
 ```console
-$ docker run -d --name my-running-haproxy -v /path/to/etc/haproxy:/usr/local/etc/haproxy:ro --sysctl net.ipv4.ip_unprivileged_port_start=0 haproxy:2.3
+$ docker run -d --name my-running-haproxy -v /path/to/etc/haproxy:/usr/local/etc/haproxy:ro --sysctl net.ipv4.ip_unprivileged_port_start=0 arm32v5/haproxy:2.3
 ```
 
 Note that your host's `/path/to/etc/haproxy` folder should be populated with a file named `haproxy.cfg`. If this configuration file refers to any other files within that folder then you should ensure that they also exist (e.g. template files such as `400.http`, `404.http`, and so forth). However, many minimal configurations do not require any supporting files.
@@ -120,24 +116,6 @@ $ docker kill -s HUP my-running-haproxy
 ```
 
 The entrypoint script in the image checks for running the command `haproxy` and replaces it with `haproxy-systemd-wrapper` from HAProxy upstream which takes care of signal handling to do the graceful reload. Under the hood this uses the `-sf` option of `haproxy` so "there are two small windows of a few milliseconds each where it is possible that a few connection failures will be noticed during high loads" (see [Stopping and restarting HAProxy](http://www.haproxy.org/download/2.3/doc/management.txt)).
-
-# Image Variants
-
-The `haproxy` images come in many flavors, each designed for a specific use case.
-
-## `haproxy:<version>`
-
-This is the defacto image. If you are unsure about what your needs are, you probably want to use this one. It is designed to be used both as a throw away container (mount your source code and start the container to start your app), as well as the base to build other images off of.
-
-Some of these tags may have names like bullseye or buster in them. These are the suite code names for releases of [Debian](https://wiki.debian.org/DebianReleases) and indicate which release the image is based on. If your image needs to install any additional packages beyond what comes with the image, you'll likely want to specify one of these explicitly to minimize breakage when there are new releases of Debian.
-
-## `haproxy:<version>-alpine`
-
-This image is based on the popular [Alpine Linux project](https://alpinelinux.org), available in [the `alpine` official image](https://hub.docker.com/_/alpine). Alpine Linux is much smaller than most distribution base images (~5MB), and thus leads to much slimmer images in general.
-
-This variant is useful when final image size being as small as possible is your primary concern. The main caveat to note is that it does use [musl libc](https://musl.libc.org) instead of [glibc and friends](https://www.etalabs.net/compare_libcs.html), so software will often run into issues depending on the depth of their libc requirements/assumptions. See [this Hacker News comment thread](https://news.ycombinator.com/item?id=10782897) for more discussion of the issues that might arise and some pro/con comparisons of using Alpine-based images.
-
-To minimize image size, it's uncommon for additional related tools (such as `git` or `bash`) to be included in Alpine-based images. Using this image as a base, add the things you need in your own Dockerfile (see the [`alpine` image description](https://hub.docker.com/_/alpine/) for examples of how to install packages if you are unfamiliar).
 
 # License
 
