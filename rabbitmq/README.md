@@ -14,6 +14,8 @@ WARNING:
 
 -->
 
+**Note:** this is the "per-architecture" repository for the `i386` builds of [the `rabbitmq` official image](https://hub.docker.com/_/rabbitmq) -- for more information, see ["Architectures other than amd64?" in the official images documentation](https://github.com/docker-library/official-images#architectures-other-than-amd64) and ["An image's source changed in Git, now what?" in the official images FAQ](https://github.com/docker-library/faq#an-images-source-changed-in-git-now-what).
+
 # Quick reference
 
 -	**Maintained by**:  
@@ -24,26 +26,18 @@ WARNING:
 
 # Supported tags and respective `Dockerfile` links
 
--	[`3.13.0-beta.4`, `3.13-rc`](https://github.com/docker-library/rabbitmq/blob/05bc72cdc91d9c85319d917ea749ae7f82792adc/3.13-rc/ubuntu/Dockerfile)
--	[`3.13.0-beta.4-management`, `3.13-rc-management`](https://github.com/docker-library/rabbitmq/blob/80011d74327aea3ddd460b189c6533c1f177f48f/3.13-rc/ubuntu/management/Dockerfile)
 -	[`3.13.0-beta.4-alpine`, `3.13-rc-alpine`](https://github.com/docker-library/rabbitmq/blob/05bc72cdc91d9c85319d917ea749ae7f82792adc/3.13-rc/alpine/Dockerfile)
 -	[`3.13.0-beta.4-management-alpine`, `3.13-rc-management-alpine`](https://github.com/docker-library/rabbitmq/blob/80011d74327aea3ddd460b189c6533c1f177f48f/3.13-rc/alpine/management/Dockerfile)
--	[`3.12.3`, `3.12`, `3`, `latest`](https://github.com/docker-library/rabbitmq/blob/274d0a537ffb64d3748bbd94064fb603b58c03ba/3.12/ubuntu/Dockerfile)
--	[`3.12.3-management`, `3.12-management`, `3-management`, `management`](https://github.com/docker-library/rabbitmq/blob/c30652127ae871535b7ec8ecda8046948a52ab79/3.12/ubuntu/management/Dockerfile)
 -	[`3.12.3-alpine`, `3.12-alpine`, `3-alpine`, `alpine`](https://github.com/docker-library/rabbitmq/blob/274d0a537ffb64d3748bbd94064fb603b58c03ba/3.12/alpine/Dockerfile)
 -	[`3.12.3-management-alpine`, `3.12-management-alpine`, `3-management-alpine`, `management-alpine`](https://github.com/docker-library/rabbitmq/blob/c30652127ae871535b7ec8ecda8046948a52ab79/3.12/alpine/management/Dockerfile)
--	[`3.11.21`, `3.11`](https://github.com/docker-library/rabbitmq/blob/98f3966e2b5be9f9dc81ff0d345101ad79c2e864/3.11/ubuntu/Dockerfile)
--	[`3.11.21-management`, `3.11-management`](https://github.com/docker-library/rabbitmq/blob/b41c10aaddc91da62f96994ab62e9d1ea590c455/3.11/ubuntu/management/Dockerfile)
 -	[`3.11.21-alpine`, `3.11-alpine`](https://github.com/docker-library/rabbitmq/blob/98f3966e2b5be9f9dc81ff0d345101ad79c2e864/3.11/alpine/Dockerfile)
 -	[`3.11.21-management-alpine`, `3.11-management-alpine`](https://github.com/docker-library/rabbitmq/blob/b41c10aaddc91da62f96994ab62e9d1ea590c455/3.11/alpine/management/Dockerfile)
--	[`3.10.25`, `3.10`](https://github.com/docker-library/rabbitmq/blob/2a34299995bd94fa478bb688ec6ea1ca0dfb3f76/3.10/ubuntu/Dockerfile)
--	[`3.10.25-management`, `3.10-management`](https://github.com/docker-library/rabbitmq/blob/b41c10aaddc91da62f96994ab62e9d1ea590c455/3.10/ubuntu/management/Dockerfile)
 -	[`3.10.25-alpine`, `3.10-alpine`](https://github.com/docker-library/rabbitmq/blob/2a34299995bd94fa478bb688ec6ea1ca0dfb3f76/3.10/alpine/Dockerfile)
 -	[`3.10.25-management-alpine`, `3.10-management-alpine`](https://github.com/docker-library/rabbitmq/blob/b41c10aaddc91da62f96994ab62e9d1ea590c455/3.10/alpine/management/Dockerfile)
--	[`3.9.29`, `3.9`](https://github.com/docker-library/rabbitmq/blob/2a34299995bd94fa478bb688ec6ea1ca0dfb3f76/3.9/ubuntu/Dockerfile)
--	[`3.9.29-management`, `3.9-management`](https://github.com/docker-library/rabbitmq/blob/b41c10aaddc91da62f96994ab62e9d1ea590c455/3.9/ubuntu/management/Dockerfile)
 -	[`3.9.29-alpine`, `3.9-alpine`](https://github.com/docker-library/rabbitmq/blob/2a34299995bd94fa478bb688ec6ea1ca0dfb3f76/3.9/alpine/Dockerfile)
 -	[`3.9.29-management-alpine`, `3.9-management-alpine`](https://github.com/docker-library/rabbitmq/blob/b41c10aaddc91da62f96994ab62e9d1ea590c455/3.9/alpine/management/Dockerfile)
+
+[![i386/rabbitmq build status badge](https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/i386/job/rabbitmq.svg?label=i386/rabbitmq%20%20build%20job)](https://doi-janky.infosiftr.net/job/multiarch/job/i386/job/rabbitmq/)
 
 # Quick reference (cont.)
 
@@ -79,7 +73,7 @@ RabbitMQ is open source message broker software (sometimes called message-orient
 One of the important things to note about RabbitMQ is that it stores data based on what it calls the "Node Name", which defaults to the hostname. What this means for usage in Docker is that we should specify `-h`/`--hostname` explicitly for each daemon so that we don't get a random hostname and can keep track of our data:
 
 ```console
-$ docker run -d --hostname my-rabbit --name some-rabbit rabbitmq:3
+$ docker run -d --hostname my-rabbit --name some-rabbit i386/rabbitmq:3
 ```
 
 This will start a RabbitMQ container listening on the default port of 5672. If you give that a minute, then do `docker logs some-rabbit`, you'll see in the output a block similar to:
@@ -125,7 +119,7 @@ RABBITMQ_VM_MEMORY_HIGH_WATERMARK
 If you wish to change the default username and password of `guest` / `guest`, you can do so with the `RABBITMQ_DEFAULT_USER` and `RABBITMQ_DEFAULT_PASS` environmental variables. These variables were available previously in the docker-specific entrypoint shell script but are now available in RabbitMQ directly.
 
 ```console
-$ docker run -d --hostname my-rabbit --name some-rabbit -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password rabbitmq:3-management
+$ docker run -d --hostname my-rabbit --name some-rabbit -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password i386/rabbitmq:3-management
 ```
 
 You can then go to `http://localhost:8080` or `http://host-ip:8080` in a browser and use `user`/`password` to gain access to the management console
@@ -135,7 +129,7 @@ You can then go to `http://localhost:8080` or `http://host-ip:8080` in a browser
 If you wish to change the default vhost, you can do so with the `RABBITMQ_DEFAULT_VHOST` environmental variables:
 
 ```console
-$ docker run -d --hostname my-rabbit --name some-rabbit -e RABBITMQ_DEFAULT_VHOST=my_vhost rabbitmq:3-management
+$ docker run -d --hostname my-rabbit --name some-rabbit -e RABBITMQ_DEFAULT_VHOST=my_vhost i386/rabbitmq:3-management
 ```
 
 ### Memory Limits
@@ -151,7 +145,7 @@ See the [RabbitMQ "Clustering Guide"](https://www.rabbitmq.com/clustering.html#e
 For example, you can provide the cookie via a file (such as with [Docker Secrets](https://docs.docker.com/engine/swarm/secrets/)):
 
 ```console
-docker service create ... --secret source=my-erlang-cookie,target=/var/lib/rabbitmq/.erlang.cookie ... rabbitmq
+docker service create ... --secret source=my-erlang-cookie,target=/var/lib/rabbitmq/.erlang.cookie ... i386/rabbitmq
 ```
 
 (Note that it will likely also be necessary to specify `uid=XXX,gid=XXX,mode=0600` in order for Erlang in the container to be able to read the cookie file properly. See [Docker's `--secret` documentation for more details](https://docs.docker.com/engine/reference/commandline/service_create/#create-a-service-with-secrets).)
@@ -161,13 +155,13 @@ docker service create ... --secret source=my-erlang-cookie,target=/var/lib/rabbi
 There is a second set of tags provided with the [management plugin](https://www.rabbitmq.com/management.html) installed and enabled by default, which is available on the standard management port of 15672, with the default username and password of `guest` / `guest`:
 
 ```console
-$ docker run -d --hostname my-rabbit --name some-rabbit rabbitmq:3-management
+$ docker run -d --hostname my-rabbit --name some-rabbit i386/rabbitmq:3-management
 ```
 
 You can access it by visiting `http://container-ip:15672` in a browser or, if you need access outside the host, on port 8080:
 
 ```console
-$ docker run -d --hostname my-rabbit --name some-rabbit -p 8080:15672 rabbitmq:3-management
+$ docker run -d --hostname my-rabbit --name some-rabbit -p 8080:15672 i386/rabbitmq:3-management
 ```
 
 You can then go to `http://localhost:8080` or `http://host-ip:8080` in a browser.
@@ -201,13 +195,13 @@ See [the "Official Images" FAQ](https://github.com/docker-library/faq#healthchec
 
 # Image Variants
 
-The `rabbitmq` images come in many flavors, each designed for a specific use case.
+The `i386/rabbitmq` images come in many flavors, each designed for a specific use case.
 
-## `rabbitmq:<version>`
+## `i386/rabbitmq:<version>`
 
 This is the defacto image. If you are unsure about what your needs are, you probably want to use this one. It is designed to be used both as a throw away container (mount your source code and start the container to start your app), as well as the base to build other images off of.
 
-## `rabbitmq:<version>-alpine`
+## `i386/rabbitmq:<version>-alpine`
 
 This image is based on the popular [Alpine Linux project](https://alpinelinux.org), available in [the `alpine` official image](https://hub.docker.com/_/alpine). Alpine Linux is much smaller than most distribution base images (~5MB), and thus leads to much slimmer images in general.
 
