@@ -14,6 +14,8 @@ WARNING:
 
 -->
 
+**Note:** this is the "per-architecture" repository for the `arm64v8` builds of [the `xwiki` official image](https://hub.docker.com/_/xwiki) -- for more information, see ["Architectures other than amd64?" in the official images documentation](https://github.com/docker-library/official-images#architectures-other-than-amd64) and ["An image's source changed in Git, now what?" in the official images FAQ](https://github.com/docker-library/faq#an-images-source-changed-in-git-now-what).
+
 # Quick reference
 
 -	**Maintained by**:  
@@ -33,6 +35,8 @@ WARNING:
 -	[`15.5`, `15.5.1`, `15.5-mysql-tomcat`, `15.5.1-mysql-tomcat`](https://github.com/xwiki-contrib/docker-xwiki/blob/280bb2f94c270db7b9cab529ef639fc46e90e868/15.5/mysql-tomcat/Dockerfile)
 -	[`15.5-postgres-tomcat`, `15.5.1-postgres-tomcat`](https://github.com/xwiki-contrib/docker-xwiki/blob/280bb2f94c270db7b9cab529ef639fc46e90e868/15.5/postgres-tomcat/Dockerfile)
 -	[`15.5-mariadb-tomcat`, `15.5.1-mariadb-tomcat`](https://github.com/xwiki-contrib/docker-xwiki/blob/280bb2f94c270db7b9cab529ef639fc46e90e868/15.5/mariadb-tomcat/Dockerfile)
+
+[![arm64v8/xwiki build status badge](https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/arm64v8/job/xwiki.svg?label=arm64v8/xwiki%20%20build%20job)](https://doi-janky.infosiftr.net/job/multiarch/job/arm64v8/job/xwiki/)
 
 # Quick reference (cont.)
 
